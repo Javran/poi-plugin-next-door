@@ -2,6 +2,7 @@ import { observe } from 'redux-observers'
 import { store } from 'views/create-store'
 
 import { logDiffDetector } from './log-diff-detector'
+import { pStateSaver } from './p-state-saver'
 
 let unsubscribe = null
 
@@ -17,6 +18,7 @@ const globalSubscribe = () => {
     store,
     [
       logDiffDetector,
+      pStateSaver,
     ]
   )
 }
