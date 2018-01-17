@@ -26,6 +26,7 @@ const reducer = (state = initState, action) => {
     const {newState} = action
     if (newState)
       return {
+        ...state,
         ...newState,
         ready: true,
       }

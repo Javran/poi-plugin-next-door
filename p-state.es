@@ -27,9 +27,9 @@ const savePState = pState => {
 }
 
 const updatePState = oldPState => {
-  if (oldPState.$dataVersion === 'initial')
+  if (oldPState.$version === 'initial')
     return oldPState
-  throw new Error('failed to update the config')
+  throw new Error('failed to update the p-state')
 }
 
 const loadPState = () => {
@@ -37,7 +37,7 @@ const loadPState = () => {
     return updatePState(readJsonSync(getPStateFilePath()))
   } catch (err) {
     if (err.syscall !== 'open' || err.code !== 'ENOENT') {
-      console.error('Error while loading config', err)
+      console.error('Error while loading p-state', err)
     }
   }
   return null

@@ -4,6 +4,7 @@ import {
   globalUnsubscribe as pluginWillUnload,
 } from './observers'
 import { loadPState } from './p-state'
+import { Settings as settingsClass } from './ui/settings'
 
 const pluginDidLoad = () => {
   globalSubscribe()
@@ -22,4 +23,5 @@ export {
   reducer,
   pluginDidLoad,
   pluginWillUnload,
+  settingsClass,
 }

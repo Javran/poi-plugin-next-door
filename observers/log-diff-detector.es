@@ -1,9 +1,11 @@
 import React from 'react'
 import { observer } from 'redux-observers'
 import { enumFromTo } from 'subtender'
+import { store } from 'views/create-store'
 
 import {
   logsSelector,
+  disabledTypesSelector,
 } from '../selectors'
 
 const logEquals = (l1, l2) =>
@@ -31,7 +33,9 @@ const logDiffDetector = observer(
   logsSelector,
   (_dispatch, current, previous) => {
     const indMax = computeNewRange(current, previous)
-    const logs = enumFromTo(0,indMax).map(i => current[i])
+    const logsRaw = enumFromTo(0,indMax).map(i => current[i])
+    const disabledTypes = disabledTypesSelector(store.getState())
+    const logs = logsRaw.filter(l => !disabledTypes.includes(l.api_type))
     if (logs.length > 0) {
       const {toast} = window
       const content = (
